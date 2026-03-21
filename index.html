@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vue.js PHP fetchAll Data from Mysql Database</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container" id="fetchAlldiv">
+   <br />
+   <h3 align="center">Vue.js PHP fetchAll Data from Mysql Database</h3>
+    <br />
+    <div id="app">
+
+  <!-- FORM -->
+   <h2>Submit Currency Transaction</h2>
+  <form @submit.prevent="handleSubmit">
+    <input type="text" v-model="currency" placeholder="Enter currency" />
+    <input type="date" v-model="date" />
+    <button type="submit">Submit</button>
+  </form>
+
+ <br><br>
+
+  <!-- TABLE (MUST BE INSIDE app) -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Transaction Records</h3>
+</div>
+
+ <div class="panel-body">
+      <table class="table table-bordered">
+        <tr>
+          <th>ID</th>
+          <th>Currency</th>
+          <th>Date</th>
+        </tr>
+
+        <tr v-for="row in allData" :key="row.id">
+          <td>{{ row.id }}</td>
+          <td>{{ row.currency_code }}</td>
+          <td>{{ row.transaction_date }}</td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue@3"></script>
+
+<script>
+const app = Vue.createApp({
+  data() {
+    return {
+      currency: '',
+      date: '',
+      allData: []
+    };
+  },
+
+   methods: {
+    fetchData() {
+      axios.get('api.php')
+        .then(res => this.allData = res.data)
+        .catch(err => console.error(err));
+    },
+    handleSubmit() {
+      if (!this.currency || !this.date) return alert("Fill both fields");
+
+      axios.post('api.php', {
+        currency: this.currency.toUpperCase(),
+        date: this.date
+      })
+      .then(() => {
+        this.currency = '';
+        this.date = '';
+        this.fetchData(); // refresh table
+      })
+      .catch(err => console.error(err));
+    }
+  },
+  mounted() {
+    this.fetchData();
+  }
+});
+
+app.mount('#app');
+</script>
