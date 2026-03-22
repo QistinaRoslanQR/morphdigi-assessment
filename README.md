@@ -1,6 +1,6 @@
 # Morphdigi Assessment Project
 
-Simple full-stack app using Vue.js (frontend), PHP (backend), and MySQL (database).
+Simple full-stack app using Vue.js (frontend), PHP (backend), and MySQL (database)
 
 ## Requirements Coverage
 
