@@ -2,28 +2,15 @@
 
 Simple full-stack app using Vue.js (frontend), PHP (backend), and MySQL (database)
 
-## Requirements Coverage
-
-- Front-end (JavaScript, Vue.js):
-  - Form submission for currency and transaction date
-  - Data listing table showing currency and date
-- Back-end (PHP):
-  - Accepts submitted form data via `POST`
-  - Saves data to MySQL
-  - Queries data via `GET`
-  - Returns JSON to frontend
-- Database (MySQL):
-  - `transactions` table with `currency_code` and `transaction_date`
-
 ## Project Files
 
-- `index.html` - Vue.js UI (form + list)
-- `api.php` - PHP API endpoint for `GET` and `POST`
-- `database.sql` - SQL to create database/table
+- `index.html`
+- `api.php`
+- `database.sql`
 
 ## Step-by-Step: Run Locally
 
-1. Install and open XAMPP.
+1. Open XAMPP.
 2. Start `Apache` and `MySQL` in XAMPP Control Panel.
 3. Put this project in:
    - `C:\xampp\htdocs\morphdigi`
