@@ -5,7 +5,6 @@ try {
     $pdo = new PDO('mysql:host=localhost;dbname=morphdigi;charset=utf8mb4', 'root', '');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Change this if your table has a different name.
     $table = 'transactions';
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
